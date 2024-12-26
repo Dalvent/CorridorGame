@@ -1,8 +1,8 @@
+﻿using System;
 using System.Collections;
-using Script;
 using UnityEngine;
 
-public class OnceOpenDoor : MonoBehaviour, IInteractable
+public class Door : MonoBehaviour
 {
     public Transform RotationPivot;
     public Transform HandleRotationPivot;
@@ -15,21 +15,21 @@ public class OnceOpenDoor : MonoBehaviour, IInteractable
     public float HandleAngle = 60f;
     
     public bool IsLocked;
-
+    
     private bool _isInteracted;
     
-    public bool CanInteract => !_isInteracted;
+    public bool IsOpened { get; private set; }
 
-    public void Interact()
+    public void Open(Action onFinish = null)
     {
         if (_isInteracted)
             return;
         
         _isInteracted = true;
-        StartCoroutine(DoorAnimation());
+        StartCoroutine(DoorAnimation(onFinish));
     }
     
-    private IEnumerator DoorAnimation()
+    private IEnumerator DoorAnimation(Action onFinish)
     {
         Quaternion startHandle = HandleRotationPivot.transform.rotation;
         Quaternion endHandle = startHandle * Quaternion.Euler(-HandleAngle, 0, 0);
@@ -42,6 +42,9 @@ public class OnceOpenDoor : MonoBehaviour, IInteractable
             Quaternion openedRotation = startRotation * Quaternion.Euler(0, 90, 0);
             yield return RotateObject(RotationPivot, startRotation, openedRotation, AccelerationDuration);
         }
+        
+        IsOpened = true;
+        onFinish?.Invoke();
     }
 
     private IEnumerator RotateObject(Transform target, Quaternion from, Quaternion to, float accelerationDuration)

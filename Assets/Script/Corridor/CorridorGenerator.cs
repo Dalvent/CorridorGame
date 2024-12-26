@@ -13,8 +13,7 @@ public class CorridorGenerator : MonoBehaviour
     public GameObject EndRoomPrefab;
     
     public DoorNumber StartDoor;
-    public DoorNumber StartBlockDoorRight;
-    public DoorNumber StartBlockDoorLeft;
+    public CorridorBlock StartCorridorBlock;
 
     public int MinBlocksCount = 30;
     public int MaxBlocksCount = 50;
@@ -25,8 +24,8 @@ public class CorridorGenerator : MonoBehaviour
         var doorCount = blocksCount * 2 + 1;
         
         StartDoor.SetNumber(doorCount);
-        StartBlockDoorRight.SetNumber(doorCount - 1);
-        StartBlockDoorLeft.SetNumber(doorCount - 2);
+        StartCorridorBlock.RightDoor.SetNumber(doorCount - 1);
+        StartCorridorBlock.LeftDoor.SetNumber(doorCount - 2);
         
         GenerateCorridorBoxes(blocksCount);
         
