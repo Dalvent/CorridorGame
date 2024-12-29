@@ -52,6 +52,7 @@ public class YouWinCutsceneOnDoorOpen : MonoBehaviour
             UiManager.Instance.FadeIn(YouWinFadeSeconds);
             yield return new WaitForSeconds(UiManager.Instance.FadeOutSeconds);
             
+            UiManager.Instance.StopBackgroundMusic();
             UiManager.Instance.ShowYouWin();
         }
     }

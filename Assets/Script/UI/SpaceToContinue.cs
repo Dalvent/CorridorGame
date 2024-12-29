@@ -39,6 +39,7 @@ public class SpaceToContinue : MonoBehaviour
         var player = GameObject.FindGameObjectWithTag("Player");
         
         UiManager.Instance.HideHowToPlay();
+        UiManager.Instance.PlayBackgroundMusic();
         UiManager.Instance.FadeOut();
 
         await Task.Delay((int)(UiManager.Instance.FadeOutSeconds * 1000));

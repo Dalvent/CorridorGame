@@ -446,7 +446,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 0ccf3d50ea7797140adacfc5f3b0f70e, type: 3}
   m_Resource: {fileID: 8300000, guid: 0ccf3d50ea7797140adacfc5f3b0f70e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -643,7 +643,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 0ccf3d50ea7797140adacfc5f3b0f70e, type: 3}
   m_Resource: {fileID: 8300000, guid: 0ccf3d50ea7797140adacfc5f3b0f70e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1213,8 +1213,8 @@ MonoBehaviour:
   KnockKnockTrigger: {fileID: 5734000929647103425}
   KnockKnockScreamerPosition: {fileID: 2405830619835856854}
   KnockKnockScreamerPrefab: {fileID: 7130896306487902421, guid: 6d5e1a933bf6efc47a5c831f50705ccd, type: 3}
-  KnockKnockSoundDelayMin: 1
-  KnockKnockSoundDelayMax: 6
+  KnockKnockSoundDelayMin: 0
+  KnockKnockSoundDelayMax: 3.6
   KnockKnockSound: {fileID: 3920873878632440031}
   RunningBroPosition: {fileID: 6693262568531246413}
   RunningBroPrefab: {fileID: 23403165684019350, guid: baeb833ff77f28049bec497028716393, type: 3}
@@ -1406,8 +1406,8 @@ MonoBehaviour:
   KnockKnockTrigger: {fileID: 5734000929647103425}
   KnockKnockScreamerPosition: {fileID: 7059990092036249010}
   KnockKnockScreamerPrefab: {fileID: 7130896306487902421, guid: 6d5e1a933bf6efc47a5c831f50705ccd, type: 3}
-  KnockKnockSoundDelayMin: 1
-  KnockKnockSoundDelayMax: 6
+  KnockKnockSoundDelayMin: 0
+  KnockKnockSoundDelayMax: 3.7
   KnockKnockSound: {fileID: 6364959255569360306}
   RunningBroPosition: {fileID: 6578634613530188925}
   RunningBroPrefab: {fileID: 23403165684019350, guid: baeb833ff77f28049bec497028716393, type: 3}

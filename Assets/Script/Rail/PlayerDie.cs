@@ -31,8 +31,11 @@ public class PlayerDie : MonoBehaviour
         
         PlayWithFade.PlayWithRandomPitch();
         await Task.Delay((int)(TimeToShowFade * 1000));
+        
         UiManager.Instance.FadeIn(FadeTime);
         await Task.Delay((int)(FadeTime * 1000));
+        
+        UiManager.Instance.StopBackgroundMusic();
 
         await SceneManager.LoadSceneAsync("Scenes/Game");
         UiManager.Instance.ShowHowToPlay();

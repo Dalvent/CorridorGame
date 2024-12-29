@@ -1,8 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace Script.UI
 {
@@ -14,6 +10,7 @@ namespace Script.UI
         public GameObject LoadingView;
         public GameObject YouWinView;
         public ScreenFade ScreenFade;
+        public AudioSource BackgroundMusic;
         public float FadeOutSeconds = 1.0f;
         
         public void HideLoading()
@@ -46,6 +43,17 @@ namespace Script.UI
         public void FadeIn(float FadeIn)
         {
             ScreenFade.FadeIn(FadeIn);
+        }
+        
+        public void PlayBackgroundMusic()
+        {
+            BackgroundMusic.Play();
+        }
+        
+        public void StopBackgroundMusic()
+        {
+            BackgroundMusic.Stop();
+            BackgroundMusic.time = 0;
         }
     }
 }
