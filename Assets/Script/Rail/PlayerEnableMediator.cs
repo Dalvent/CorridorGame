@@ -1,6 +1,4 @@
-﻿using System;
-using Script.Rail;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerEnableMediator : MonoBehaviour
 {
@@ -10,23 +8,31 @@ public class PlayerEnableMediator : MonoBehaviour
 
     public void Awake()
     {
-        PlayerDirectionState.enabled = true;
-        ForwardMove.enabled = true;
-        OpenDoor.enabled = false;
+        DisableAll();
     }
 
     public void OnEnable()
     {
-        PlayerDirectionState.enabled = true;
-        ForwardMove.enabled = true;
-        OpenDoor.enabled = false;
-
         PlayerDirectionState.BeginRotating += OnBeginRotating;
         PlayerDirectionState.EndRotating += OnEndRotating;
         ForwardMove.BeginRailEvent += OnBeginRailEvent;
         ForwardMove.EndRailEvent += OnEndRailEvent;
         OpenDoor.BeginOpening += OnBeginOpening;
         OpenDoor.EndOpening += OnEndOpening;
+    }
+
+    public void EnableAtForward()
+    {
+        PlayerDirectionState.enabled = true;
+        ForwardMove.enabled = true;
+        OpenDoor.enabled = false;
+    }
+    
+    public void DisableAll()
+    {
+        PlayerDirectionState.enabled = false;
+        ForwardMove.enabled = false;
+        OpenDoor.enabled = false;
     }
 
     private void OnBeginRotating(PlayerDirectionState.DirectionState from, PlayerDirectionState.DirectionState to)

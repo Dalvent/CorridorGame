@@ -64,19 +64,20 @@ public class PlayerDirectionState : MonoBehaviour
     private void Awake()
     {
         _inputSystem = new InputSystem();
-        _inputSystem.Enable();
         _forwardRotation = transform.rotation;
     }
     
     private void OnEnable()
     {
         _inputSystem.Player.Look.performed += OnLook;
+        _inputSystem.Enable();
 
         _rotationCoroutine = null;
     }
 
     private void OnDisable()
     {
+        _inputSystem.Disable();
         _inputSystem.Player.Look.performed -= OnLook;
     }
     

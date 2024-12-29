@@ -3,17 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - GameBootstrapper
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Door
-  - 
-  - 
+  - Enemy
+  - Trigger
   - 
   - 
   - 

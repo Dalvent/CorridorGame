@@ -1,19 +1,35 @@
 ﻿using System;
+using Script;
 using UnityEngine;
-
-// Делай через отдельный компонент - с ним проблем не будет даже при изменение стейта
-// при том при отмене важно возращаться именно на позицию
-// хз можно будет обернуть обращение в какой-нибудь интерфейс для рефакторинга движения вперед, но это потом
-// удачи друг.
 
 public class SteppingSystem : MonoBehaviour
 {
-    public float PrepareStepDistance = 0.1f;
-    public float PrepareStepTime = 0.5f;
-    public float MainStepDistance = 0.85f;
-    public float MainStepTime = 1.0f;
-    public float EndingStepDistance = 0.05f;
-    public float EndingStepTime = 0.2f;
+    public float StepDistance = 0.1f;
+    public float StepTime = 1.0f;
+    
+    [Header("Distance ratios")]
+    public float PrepareStepDistanceRatios = 0.10f;
+    public float MainStepDistanceRatios = 0.85f;
+    public float EndingStepDistanceRatios = 0.05f;
+    
+    [Header("Time ratios")]
+    public float PrepareStepTimeRatios = 0.4f;
+    public float MainStepTimeRatios = 0.5f;
+    public float EndingStepTimeRatios = 0.1f;
+
+    public AudioSource PrepareSound;
+    public AudioSource MainSound;
+    
+    public float SumStepDistanceRatios => PrepareStepDistanceRatios + MainStepDistanceRatios + EndingStepDistanceRatios;
+    public float SumStepTimeRatios => PrepareStepTimeRatios + MainStepTimeRatios + EndingStepTimeRatios;
+    
+    public float PrepareStepDistance => StepDistance * (PrepareStepDistanceRatios / SumStepDistanceRatios);
+    public float MainStepDistance  => StepDistance * (MainStepDistanceRatios / SumStepDistanceRatios);
+    public float EndingStepDistance  => StepDistance * (EndingStepDistanceRatios / SumStepDistanceRatios);
+    
+    public float PrepareStepTime => StepTime * (PrepareStepTimeRatios / SumStepTimeRatios);
+    public float MainStepTime => StepTime * (MainStepTimeRatios / SumStepTimeRatios);
+    public float EndingStepTime => StepTime * (EndingStepTimeRatios / SumStepTimeRatios);
 
     public enum StepState { Idle, Preparing, MainStep, Ending, Canceling }
     private StepState _currentState = StepState.Idle;
@@ -24,12 +40,23 @@ public class SteppingSystem : MonoBehaviour
         {
             if (_currentState == value)
                 return;
-
+            
             _currentState = value;
+            
+            switch (_currentState)
+            {
+                case StepState.Preparing:
+                    PrepareSound.PlayWithRandomPitch(0.75f, 1.2f);
+                    break;
+                case StepState.MainStep:
+                    MainSound.PlayWithRandomPitch(0.75f, 1.2f);
+                    break;
+            }
+
             StepStateChanged?.Invoke();
         }
     }
-
+    
     public event Action StepStateChanged;
 
     private Vector3 _startPosition;
@@ -79,15 +106,20 @@ public class SteppingSystem : MonoBehaviour
             _elapsedTime = 0f;
         }
     }
+    
+    public void ForceStop()
+    {
+        CurrentState = StepState.Idle;
+    }
 
     public void CancelStep()
     {
-        return;
-        if (CurrentState == StepState.Preparing)
+        // TODO: Make it work :/
+        /*if (CurrentState == StepState.Preparing)
         {
             CurrentState = StepState.Canceling;
             _elapsedTime = 0f;
-        }
+        }*/
     }
 
     private void PerformMovement(Vector3 start, Vector3 end, float duration, StepState nextState)

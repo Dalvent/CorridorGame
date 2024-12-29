@@ -8,7 +8,7 @@ public class PlayerOpenDoor : MonoBehaviour
     public float RayDistance = 3f;
     public Camera PlayerCamera;
 
-    private CorridorDoor _corridorDoor;
+    private Door _door;
     private InputSystem _inputSystem;
     private LayerMask _doorLayer;
     
@@ -18,18 +18,19 @@ public class PlayerOpenDoor : MonoBehaviour
     private void Awake()
     {
         _inputSystem = new InputSystem();
-        _inputSystem.Enable();
         _doorLayer = LayerMask.GetMask("Door");
     }
 
     private void OnEnable()
     {
         _inputSystem.Player.Use.performed += OnUse;
+        _inputSystem.Enable();
     }
 
     private void OnDisable()
     {
         _inputSystem.Player.Use.performed -= OnUse;
+        _inputSystem.Disable();
     }
 
     private void OnUse(InputAction.CallbackContext context)
@@ -40,12 +41,12 @@ public class PlayerOpenDoor : MonoBehaviour
         if (!Physics.Raycast(ray, out hit, RayDistance, _doorLayer)) 
             return;
         
-        _corridorDoor = hit.collider.GetComponent<CorridorDoor>();
-        if (_corridorDoor == null)
+        _door = hit.collider.GetComponent<Door>();
+        if (_door == null)
             return; 
 
         BeginOpening?.Invoke();
-        _corridorDoor.Open(() =>
+        _door.Open(() =>
         {
             EndOpening?.Invoke();
         });

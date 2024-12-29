@@ -21,7 +21,6 @@ public class PlayerForwardMove : MonoBehaviour
     private void Awake()
     {
         _inputSystem = new InputSystem();
-        _inputSystem.Enable();
         _doorLayer = LayerMask.GetMask("Door");
     }
 
@@ -29,12 +28,14 @@ public class PlayerForwardMove : MonoBehaviour
     {
         _inputSystem.Player.Use.performed += OnUse;
         _inputSystem.Player.Use.canceled += OnStopUse;
+        _inputSystem.Enable();
     }
 
     private void OnDisable()
     {
         _inputSystem.Player.Use.performed -= OnUse;
         _inputSystem.Player.Use.canceled -= OnStopUse;
+        _inputSystem.Disable();
         
         _havePlayerInput = false;
         (_currentRailEvent as ICancelableRailEvent)?.RequestCancel();
