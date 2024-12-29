@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public class DoorOpeningEvent : MonoBehaviour
 {
     public Door Door;
-    public enum OpeningEventType { None, KnockKnock, RunningBro }
+    public enum OpeningEventType { None, KnockKnock, RunningBro, PlasticBag }
     public OpeningEventType EventType;
 
     public bool IsProcessed
@@ -35,6 +35,10 @@ public class DoorOpeningEvent : MonoBehaviour
     public Transform RunningBroPosition;
     public GameObject RunningBroPrefab;
     public Transform[] RunningBroTargets;
+    
+    [Header("Plastic Bag")] 
+    public Transform PlasticBagPosition;
+    public GameObject PlasticBagPrefab;
     
     private void OnEnable()
     {
@@ -72,6 +76,9 @@ public class DoorOpeningEvent : MonoBehaviour
             case OpeningEventType.RunningBro:
                 var runningBro = Instantiate(RunningBroPrefab, RunningBroPosition);
                 runningBro.GetComponent<WalkToTargets>().Targets = RunningBroTargets;
+                break;
+            case OpeningEventType.PlasticBag:
+                Instantiate(PlasticBagPrefab, PlasticBagPosition);
                 break;
         }
     }

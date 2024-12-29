@@ -1221,6 +1221,8 @@ MonoBehaviour:
   RunningBroTargets:
   - {fileID: 5659479299156084092}
   - {fileID: 7421032811805273075}
+  PlasticBagPosition: {fileID: 2405830619835856854}
+  PlasticBagPrefab: {fileID: 6379720621054076221, guid: e3bfd5326ff48ba459a18fd665337dde, type: 3}
 --- !u!1001 &6153780139948378902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1414,6 +1416,8 @@ MonoBehaviour:
   RunningBroTargets:
   - {fileID: 5659479299156084092}
   - {fileID: 4614622460663155830}
+  PlasticBagPosition: {fileID: 7059990092036249010}
+  PlasticBagPrefab: {fileID: 6379720621054076221, guid: e3bfd5326ff48ba459a18fd665337dde, type: 3}
 --- !u!114 &8004297451796834435 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4037126390865192530, guid: b2ed5e402e2ae9c4680bdb404de5bb00, type: 3}

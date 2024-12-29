@@ -3724,6 +3724,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1138530520}
     - target: {fileID: 5042461124983587130, guid: 1b6640f374ccfff40a4710de96e973cb, type: 3}
+      propertyPath: MaxBlocksCount
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042461124983587130, guid: 1b6640f374ccfff40a4710de96e973cb, type: 3}
+      propertyPath: MinBlocksCount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042461124983587130, guid: 1b6640f374ccfff40a4710de96e973cb, type: 3}
       propertyPath: StartCorridorBlock
       value: 
       objectReference: {fileID: 1068413974}

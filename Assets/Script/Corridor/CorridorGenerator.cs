@@ -75,14 +75,23 @@ public class CorridorGenerator : MonoBehaviour
     private static void GenerateRandomEventDoorValues(DoorOpeningEvent randomEventDoor)
     {
         // TODO: REWRITE!
-        var randomValue = Random.Range(0, 7);
-        if (randomValue == 6)
+        var randomValue = Random.Range(0, 11);
+        if (randomValue == 9)
         {
             randomEventDoor.Door.IsLocked = true;
             return;
         }
 
-        if (randomValue > 3)
+        if (randomValue == 10)
+        {
+            randomEventDoor.EventType = DoorOpeningEvent.OpeningEventType.PlasticBag;
+            return;
+        }
+        
+        if (randomValue >= 6)
+            randomValue -= 3;
+        
+        if (randomValue >= 3)
             randomValue -= 3; 
         
         randomEventDoor.EventType = (DoorOpeningEvent.OpeningEventType)randomValue;
