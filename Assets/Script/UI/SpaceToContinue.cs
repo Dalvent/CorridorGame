@@ -1,49 +1,44 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
 using Script.UI;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SpaceToContinue : MonoBehaviour
 {
-    private InputSystem _inputSystem;
-    
     // Hack:
     private bool _canUse;
 
-    private void Awake()
-    {
-        _inputSystem = new InputSystem();
-    }
-
     private void OnEnable()
     {
-        _inputSystem.Player.Use.performed += OnUse;
-        _inputSystem.Enable();
+        InputManager.Instance.UsePerformed += OnUse;
         _canUse = true;
     }
 
     private void OnDisable()
     {
-        _inputSystem.Player.Use.performed -= OnUse;
-        _inputSystem.Disable();
+        InputManager.Instance.UsePerformed -= OnUse;
         _canUse = false;
     }
 
-    private async void OnUse(InputAction.CallbackContext obj)
+    private void OnUse()
     {
         if (!_canUse)
             return;
-        
+
         _canUse = false;
         
-        var player = GameObject.FindGameObjectWithTag("Player");
+        UiManager.Instance.StartCoroutine(StartUse());
         
-        UiManager.Instance.HideHowToPlay();
-        UiManager.Instance.PlayBackgroundMusic();
-        UiManager.Instance.FadeOut();
+        IEnumerator StartUse()
+        {
+            var player = GameObject.FindGameObjectWithTag("Player");
 
-        await Task.Delay((int)(UiManager.Instance.FadeOutSeconds * 1000));
-        
-        player.GetComponent<PlayerEnableMediator>().EnableAtForward();
+            UiManager.Instance.HideHowToPlay();
+            UiManager.Instance.PlayBackgroundMusic();
+            UiManager.Instance.FadeOut();
+
+            yield return new WaitForSeconds(UiManager.Instance.FadeOutSeconds);
+
+            player.GetComponent<PlayerEnableMediator>().EnableAtForward();
+        }
     }
 }

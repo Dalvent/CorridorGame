@@ -12,7 +12,6 @@ public class PlayerForwardMove : MonoBehaviour
     public event Action BeginRailEvent;
     public event Action EndRailEvent;
 
-    private InputSystem _inputSystem;
     private LayerMask _doorLayer;
 
     private IRailEvent _currentRailEvent;
@@ -20,22 +19,19 @@ public class PlayerForwardMove : MonoBehaviour
 
     private void Awake()
     {
-        _inputSystem = new InputSystem();
         _doorLayer = LayerMask.GetMask("Door");
     }
 
     private void OnEnable()
     {
-        _inputSystem.Player.Use.performed += OnUse;
-        _inputSystem.Player.Use.canceled += OnStopUse;
-        _inputSystem.Enable();
+        InputManager.Instance.UsePerformed += OnUse;
+        InputManager.Instance.UseCanceled += OnStopUse;
     }
 
     private void OnDisable()
     {
-        _inputSystem.Player.Use.performed -= OnUse;
-        _inputSystem.Player.Use.canceled -= OnStopUse;
-        _inputSystem.Disable();
+        InputManager.Instance.UsePerformed -= OnUse;
+        InputManager.Instance.UseCanceled -= OnStopUse;
         
         _havePlayerInput = false;
         (_currentRailEvent as ICancelableRailEvent)?.RequestCancel();
@@ -74,12 +70,12 @@ public class PlayerForwardMove : MonoBehaviour
         return railEvent.IsPerformed ? null : railEvent;
     }
 
-    private void OnUse(InputAction.CallbackContext obj)
+    private void OnUse()
     {
         _havePlayerInput = true;
     }
 
-    private void OnStopUse(InputAction.CallbackContext obj)
+    private void OnStopUse()
     {
         _havePlayerInput = false;
     }

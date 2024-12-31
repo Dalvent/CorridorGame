@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerDirectionState : MonoBehaviour
 {
@@ -14,7 +13,6 @@ public class PlayerDirectionState : MonoBehaviour
     public event BeginRotatingEvent BeginRotating;
     public event EndRotatingEvent EndRotating;
     
-    private InputSystem _inputSystem;
     private Coroutine _rotationCoroutine;
     private Quaternion _forwardRotation;
 
@@ -63,30 +61,25 @@ public class PlayerDirectionState : MonoBehaviour
     
     private void Awake()
     {
-        _inputSystem = new InputSystem();
         _forwardRotation = transform.rotation;
     }
     
     private void OnEnable()
     {
-        _inputSystem.Player.Look.performed += OnLook;
-        _inputSystem.Enable();
+        InputManager.Instance.LookPerformed += OnLook;
 
         _rotationCoroutine = null;
     }
 
     private void OnDisable()
     {
-        _inputSystem.Disable();
-        _inputSystem.Player.Look.performed -= OnLook;
+        InputManager.Instance.LookPerformed -= OnLook;
     }
     
-    private void OnLook(InputAction.CallbackContext context)
+    private void OnLook(Vector2 input)
     {
         if (_rotationCoroutine != null)
             return;
-        
-        var input = context.ReadValue<Vector2>();
 
         if (input.x >= 0.5f)
             StartRotating(DirectionState.Right);

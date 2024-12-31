@@ -13,20 +13,6 @@ MonoBehaviour:
   m_Name: CorridorDecals
   m_EditorClassIdentifier: 
   DecalsMaterials:
-  - {fileID: 2100000, guid: a73b6ecd8b02ad54897dc3d8829cc1f4, type: 2}
-  - {fileID: 2100000, guid: c51ddc00cac14a145822029f6f9ea7d9, type: 2}
-  - {fileID: 2100000, guid: 39da329c4eb471546af9ae74797bdc95, type: 2}
-  - {fileID: 2100000, guid: a22a8b943fef53d4b9578574a76dfcf6, type: 2}
-  - {fileID: 2100000, guid: d365fbe5314feda429312b7afe66497d, type: 2}
-  - {fileID: 2100000, guid: e2738d63a02248649867f5d5c68fd13a, type: 2}
-  - {fileID: 2100000, guid: d2ebf25530e53894f826c73488c3ffd5, type: 2}
-  - {fileID: 2100000, guid: 4c93a08364405314da90825bef188591, type: 2}
-  - {fileID: 2100000, guid: 81169b2813c31664a84fc1cbbb7c3f71, type: 2}
-  - {fileID: 2100000, guid: 861a578ce1b27354f88691e84858c1b1, type: 2}
-  - {fileID: 2100000, guid: 79e749cb55944cd44a85bb0342966e4f, type: 2}
-  - {fileID: 2100000, guid: a78c8711db0a1394a9bde5b7a5d9c9d2, type: 2}
-  - {fileID: 2100000, guid: aa336a4d8f50c5e40b3efe2a45b20f48, type: 2}
-  - {fileID: 2100000, guid: 9ec8d8695507170499848f92bad7ebb0, type: 2}
   - {fileID: 2100000, guid: 2aa431344afeb2247ae106e755c11696, type: 2}
   - {fileID: 2100000, guid: 7ee7b045674fc4943ab9915aecec234a, type: 2}
   - {fileID: 2100000, guid: f8f38f67bd492b34f9770ec8db4ea374, type: 2}
@@ -34,3 +20,17 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8485d0b719931b64eb82eb5ca4ce7c42, type: 2}
   - {fileID: 2100000, guid: a0f74656fab72d841ae2d9f101b571dc, type: 2}
   - {fileID: 2100000, guid: df251c0840d680a49910f8470adac198, type: 2}
+  - {fileID: 2100000, guid: a78c8711db0a1394a9bde5b7a5d9c9d2, type: 2}
+  - {fileID: 2100000, guid: aa336a4d8f50c5e40b3efe2a45b20f48, type: 2}
+  - {fileID: 2100000, guid: 9ec8d8695507170499848f92bad7ebb0, type: 2}
+  - {fileID: 2100000, guid: d365fbe5314feda429312b7afe66497d, type: 2}
+  - {fileID: 2100000, guid: e2738d63a02248649867f5d5c68fd13a, type: 2}
+  - {fileID: 2100000, guid: d2ebf25530e53894f826c73488c3ffd5, type: 2}
+  - {fileID: 2100000, guid: 4c93a08364405314da90825bef188591, type: 2}
+  - {fileID: 2100000, guid: 81169b2813c31664a84fc1cbbb7c3f71, type: 2}
+  - {fileID: 2100000, guid: 861a578ce1b27354f88691e84858c1b1, type: 2}
+  - {fileID: 2100000, guid: 79e749cb55944cd44a85bb0342966e4f, type: 2}
+  - {fileID: 2100000, guid: a73b6ecd8b02ad54897dc3d8829cc1f4, type: 2}
+  - {fileID: 2100000, guid: c51ddc00cac14a145822029f6f9ea7d9, type: 2}
+  - {fileID: 2100000, guid: 39da329c4eb471546af9ae74797bdc95, type: 2}
+  - {fileID: 2100000, guid: a22a8b943fef53d4b9578574a76dfcf6, type: 2}

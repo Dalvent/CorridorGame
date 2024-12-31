@@ -6,6 +6,7 @@ public class GameBootstrapper : MonoBehaviour
 {
     public static GameBootstrapper Instance { get; private set; }
     public UiManager UiManager;
+    public InputManager InputManager;
     
     private void Awake()
     {
@@ -13,9 +14,9 @@ public class GameBootstrapper : MonoBehaviour
         Instance = this;
     }
 
-    private async void Start()
+    private void Start()
     {
-        await SceneManager.LoadSceneAsync("Scenes/Game");
+        SceneManager.LoadScene("Scenes/Game");
         UiManager.HideLoading();
         UiManager.ShowHowToPlay();
     }

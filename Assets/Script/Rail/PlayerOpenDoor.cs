@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class PlayerOpenDoor : MonoBehaviour
 {
@@ -9,7 +8,6 @@ public class PlayerOpenDoor : MonoBehaviour
     public Camera PlayerCamera;
 
     private Door _door;
-    private InputSystem _inputSystem;
     private LayerMask _doorLayer;
     
     public event Action BeginOpening;
@@ -17,23 +15,20 @@ public class PlayerOpenDoor : MonoBehaviour
 
     private void Awake()
     {
-        _inputSystem = new InputSystem();
         _doorLayer = LayerMask.GetMask("Door");
     }
 
     private void OnEnable()
     {
-        _inputSystem.Player.Use.performed += OnUse;
-        _inputSystem.Enable();
+        InputManager.Instance.UsePerformed += OnUse;
     }
 
     private void OnDisable()
     {
-        _inputSystem.Player.Use.performed -= OnUse;
-        _inputSystem.Disable();
+        InputManager.Instance.UsePerformed -= OnUse;
     }
 
-    private void OnUse(InputAction.CallbackContext context)
+    private void OnUse()
     {
         Ray ray = new(PlayerCamera.transform.position, PlayerCamera.transform.forward);
         RaycastHit hit;
