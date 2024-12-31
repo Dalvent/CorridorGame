@@ -3,18 +3,9 @@ using UnityEngine.InputSystem;
 
 public class YouWinView : MonoBehaviour
 {
-    private void OnEnable()
+    private void Update()
     {
-        InputManager.Instance.UsePerformed += OnUse;
-    }
-
-    private void OnDisable()
-    {
-        InputManager.Instance.UsePerformed -= OnUse;
-    }
-
-    private void OnUse()
-    {
-        Application.Quit();
+        if (InputManager.Instance.IsUseDown)
+            Application.Quit();
     }
 }

@@ -66,28 +66,22 @@ public class PlayerDirectionState : MonoBehaviour
     
     private void OnEnable()
     {
-        InputManager.Instance.LookPerformed += OnLook;
-
         _rotationCoroutine = null;
     }
-
-    private void OnDisable()
-    {
-        InputManager.Instance.LookPerformed -= OnLook;
-    }
     
-    private void OnLook(Vector2 input)
+    private void Update()
     {
         if (_rotationCoroutine != null)
             return;
 
-        if (input.x >= 0.5f)
+        Vector2 look = InputManager.Instance.Look;
+        if (look.x >= 0.1f)
             StartRotating(DirectionState.Right);
-        else if (input.x <= -0.5f)
+        else if (look.x <= -0.1f)
             StartRotating(DirectionState.Left);
-        else if (input.y >= 0.5f)
+        else if (look.y >= 0.1f)
             StartRotating(DirectionState.Forward);
-        else if (input.y <= -0.5f)
+        else if (look.y <= -0.1f)
             StartRotating(DirectionState.Back);
     }
 }

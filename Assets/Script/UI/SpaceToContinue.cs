@@ -9,19 +9,20 @@ public class SpaceToContinue : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.Instance.UsePerformed += OnUse;
         _canUse = true;
     }
 
     private void OnDisable()
     {
-        InputManager.Instance.UsePerformed -= OnUse;
         _canUse = false;
     }
 
-    private void OnUse()
+    private void Update()
     {
         if (!_canUse)
+            return;
+        
+        if (!InputManager.Instance.IsUseDown)
             return;
 
         _canUse = false;

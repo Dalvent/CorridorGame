@@ -1,7 +1,6 @@
 ﻿using System;
 using Script.Rail;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerForwardMove : MonoBehaviour
 {
@@ -15,31 +14,20 @@ public class PlayerForwardMove : MonoBehaviour
     private LayerMask _doorLayer;
 
     private IRailEvent _currentRailEvent;
-    private bool _havePlayerInput;
 
     private void Awake()
     {
         _doorLayer = LayerMask.GetMask("Door");
     }
 
-    private void OnEnable()
-    {
-        InputManager.Instance.UsePerformed += OnUse;
-        InputManager.Instance.UseCanceled += OnStopUse;
-    }
-
     private void OnDisable()
     {
-        InputManager.Instance.UsePerformed -= OnUse;
-        InputManager.Instance.UseCanceled -= OnStopUse;
-        
-        _havePlayerInput = false;
         (_currentRailEvent as ICancelableRailEvent)?.RequestCancel();
     }
 
     private void Update()
     {
-        if (_havePlayerInput && _currentRailEvent == null)
+        if (InputManager.Instance.InUse && _currentRailEvent == null)
         {
             _currentRailEvent = FindNextGameObjectRailEvent() ?? new StepRailEvent(SteppingSystem);
             _currentRailEvent.Perform();
@@ -68,16 +56,6 @@ public class PlayerForwardMove : MonoBehaviour
 
         var railEvent = hit.collider.GetComponent<IRailEvent>();
         return railEvent.IsPerformed ? null : railEvent;
-    }
-
-    private void OnUse()
-    {
-        _havePlayerInput = true;
-    }
-
-    private void OnStopUse()
-    {
-        _havePlayerInput = false;
     }
 }
 

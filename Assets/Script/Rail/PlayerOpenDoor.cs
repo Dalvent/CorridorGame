@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerOpenDoor : MonoBehaviour
 {
@@ -18,18 +17,11 @@ public class PlayerOpenDoor : MonoBehaviour
         _doorLayer = LayerMask.GetMask("Door");
     }
 
-    private void OnEnable()
+    private void Update()
     {
-        InputManager.Instance.UsePerformed += OnUse;
-    }
-
-    private void OnDisable()
-    {
-        InputManager.Instance.UsePerformed -= OnUse;
-    }
-
-    private void OnUse()
-    {
+        if (!InputManager.Instance.IsUseDown)
+            return;
+        
         Ray ray = new(PlayerCamera.transform.position, PlayerCamera.transform.forward);
         RaycastHit hit;
 
